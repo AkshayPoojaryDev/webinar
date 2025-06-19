@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { BookNowCTA, TryFreeCTA } from "../Common/Button";
+import { BookNowCTA, TryFreeCTA } from "../components/Common/Button";
 
 /* --- Primary menu ----------------------------- */
 const navLinks = [
