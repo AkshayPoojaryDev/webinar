@@ -43,7 +43,7 @@ export default function HeroSection() {
       style={{
             transform: `scale(${scale})`,
             transformOrigin: "center center",}}
-      className="absolute inset-0 bg-black/60" />
+      className="absolute inset-0 bg-black/65" />
 
       {/* centered content */}
       <div className="relative z-10 mx-auto flex h-full max-w-4xl flex-col items-center justify-center px-6">
