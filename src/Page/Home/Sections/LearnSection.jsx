@@ -37,7 +37,16 @@ const bullets = [
 
 export default function LearnSection() {
   return (
-    <section id="learn" className="bg-white py-20 sm:py-28">
+    <section id="learn" className="bg-white py-10 sm:py-12">
+          <header className="mb-16 max-w-5xl text-center mx-auto">
+  <h2 className="text-3xl font-extrabold leading-tight tracking-tight mb-6">
+            Multiply your digital engagement results
+          </h2>
+          <p className="text-md font-medium">
+            Turn your webinars into AI-powered personalized content journeys
+            with the next generation of ON24.
+          </p>
+        </header>
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid gap-14 lg:grid-cols-3">
           {/* Poster */}

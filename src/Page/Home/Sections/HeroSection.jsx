@@ -1,72 +1,66 @@
-import React from "react";
-import { Play } from "lucide-react";
+import React, { useState, useEffect } from "react";
 import { BuyNowCTA, TryFreeCTA } from "../../../components/Common/Button";
 
 export default function HeroSection() {
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const scrollY    = window.scrollY;
+      const maxScroll = 700;    // how far you scroll before reaching minScale
+      const minScale  = 0.8;    // the smallest scale
+      // linearly interpolate from 1 → minScale
+      const fraction = Math.min(scrollY / maxScroll, 1);
+      const newScale = 1 - fraction * (1 - minScale);
+      setScale(newScale);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <section
-      className="
-        relative isolate overflow-hidden
-        bg-cover bg-center bg-no-repeat
-        text-center lg:text-left
-      "
+    <section className="relative isolate overflow-hidden text-center h-screen">
+      {/* Background video container */}
+      <div className="absolute inset-0 overflow-hidden">
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          src="https://player.vimeo.com/progressive_redirect/playback/1069021926/rendition/720p/file.mp4?loc=external&signature=8cfe0374460e6987523da7a4a3ad195acf04529e4c45a6bc90ef38b520611f72"
+          autoPlay
+          muted
+          loop
+          playsInline
+          // apply the dynamic scale & origin
+          style={{
+            transform: `scale(${scale})`,
+            transformOrigin: "center center",
+          }}
+        />
+      </div>
+
+      {/* dark overlay */}
+      <div
       style={{
-        backgroundImage:
-          "url('https://www.goto.com/-/media/images/url/webinar/sub-content/go-hero.jpg')",
-      }}
-    >
-      <span aria-hidden className="absolute inset-0 bg-black/10 lg:hidden" />
+            transform: `scale(${scale})`,
+            transformOrigin: "center center",}}
+      className="absolute inset-0 bg-black/60" />
 
-      <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-12 px-6 py-20 lg:flex-row lg:justify-between lg:py-20">
-        <div className="max-w-xl lg:max-w-2xl">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white lg:text-gray-900">
-            Hassle-free webinar
-            <br className="hidden lg:block" />
-            software
-          </h1>
-          <p className="mt-6 text-lg sm:text-xl leading-relaxed text-white/90 lg:text-gray-700">
-            From remote employee trainings to hybrid all-hands; pre-recorded
-            product demos to multi-day conferences —{" "}
-            <strong className="font-semibold">GoTo&nbsp;Webinar</strong> makes
-            events easy.
-          </p>
+      {/* centered content */}
+      <div className="relative z-10 mx-auto flex h-full max-w-4xl flex-col items-center justify-center px-6">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white">
+          Hassle-free webinar
+          <br className="hidden lg:block" />
+          software
+        </h1>
+        <p className="mt-6 max-w-2xl text-lg sm:text-xl leading-relaxed text-white/90">
+          From remote employee trainings to hybrid all-hands; pre-recorded product demos
+          to multi-day conferences —{" "}
+          <strong className="font-semibold">GoTo Webinar</strong> makes events easy.
+        </p>
 
-          <div className="mt-10 flex flex-wrap justify-center gap-4 lg:justify-start">
-            <BuyNowCTA />
-            <TryFreeCTA />
-          </div>
-        </div>
-
-        <div className="relative w-full max-w-md">
-          <img
-            src="https://www.goto.com/-/media/images/url/webinar/sub-content/go-hero---foreground.png?h=740&w=1110&hash=27BE6FBB3BBFF0F9F0C4AC025C4790F3"
-            alt="GoTo Webinar demo"
-            className="w-full rounded-xl shadow-lg"
-          />
-          <button
-            aria-label="Play video"
-            onClick={() =>
-              window.open(
-                "https://www.youtube.com/watch?v=ZCTcfIbq5T8",
-                "_blank"
-              )
-            }
-            className="absolute inset-0 flex items-center justify-center focus:outline-none"
-          >
-            <span className="relative inline-flex h-24 w-24 items-center justify-center rounded-full bg-yellow-300/60 backdrop-blur-md">
-              <svg viewBox="0 0 144 144" className="absolute h-24 w-24">
-                <circle
-                  r="62.5"
-                  cx="72"
-                  cy="72"
-                  fill="transparent"
-                  stroke="#ffe900"
-                  strokeWidth="18"
-                />
-              </svg>
-              <Play className="relative z-10 h-10 w-10 text-gray-900" />
-            </span>
-          </button>
+        <div className="mt-10 flex flex-wrap justify-center gap-4">
+          <BuyNowCTA />
+          <TryFreeCTA />
         </div>
       </div>
     </section>
