@@ -4,6 +4,7 @@ import HeroSection from "./Page/Home/Sections/HeroSection";
 import LearnSection from "./Page/Home/Sections/LearnSection";
 import EngagementSection from "./Page/Home/Sections/EngagementSection";
 import VideoPlatformCards from "./Page/Home/Sections/VideoPlatformCards";
+import Footer from "./Layout/Footer";
 
 export default function WebinarLandingPage() {
   return (
@@ -13,6 +14,7 @@ export default function WebinarLandingPage() {
       <LearnSection />
       <EngagementSection />
       <VideoPlatformCards/>
+      <Footer/>
       {/* ⟶ Add more sections (Hosts, Pricing, etc.) here */}
     </>
   );

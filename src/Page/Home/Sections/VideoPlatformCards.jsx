@@ -96,7 +96,7 @@ function VideoCard({ card, index }) {
     >
       <a
         href={card.href}
-        className="group flex h-full flex-col overflow-hidden rounded-3xl"
+        className="group flex h-full flex-col overflow-hidden rounded-3xl bg-neutral-600"
       >
         {/* video */}
         <div className="relative aspect-[4/3] w-full">
