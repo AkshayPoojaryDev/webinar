@@ -82,7 +82,7 @@ export default function EngagementSection() {
                     />
                   </button>
                   {open && (
-                    <div className="px-6 pb-6 pt-1 text-base leading-relaxed">
+                    <div className="px-6 pb-6 pt-1 text-base leading- relaxed">
                       {desc}
                     </div>
                   )}
